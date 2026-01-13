@@ -19,6 +19,8 @@ function displayMeteo(meteoData) {
     const container = document.getElementById('app');
     container.innerHTML = "";
 
+    console.log("meteo data", meteoData);
+
     for (const data of meteoData) {
 
         const card = document.createElement('div');
