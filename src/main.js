@@ -67,11 +67,13 @@ function getTemperaturePoints(meteoData) {
 }
 
 function getRainPoints(meteoData) {
-    return [];
+    return meteoData.map(data => {
+        return {x: data.time, y:data.rain}
+    });
 }
 
 function getWindPoints(meteoData) {
-    return [];
+    return meteoData.map(data => ({x: data.time, y:data.wind}));
 }
 
 function testChart(canvasId, dataPoints) {
@@ -84,13 +86,13 @@ function testChart(canvasId, dataPoints) {
 
     Chart.register(LineController, CategoryScale, LinearScale, PointElement, LineElement);
 
-    const labels = ["marzo", "aprile", "maggio", "giugno", "luglio", "agosto","settembre"]
+    const labels = []
 
     const data = {
         labels: labels,
         datasets: [{
             label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: dataPoints,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
